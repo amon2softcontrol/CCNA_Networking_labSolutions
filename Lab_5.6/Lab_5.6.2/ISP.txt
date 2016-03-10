@@ -1,0 +1,42 @@
+en
+conf t
+enable password class
+no ip domain-lookup
+banner motd &
+**************************
+This is message of the day
+**************************
+&
+
+hostname ISP
+
+line console 0
+logging synchro
+password class
+login
+exec-timeout 15
+
+line vty 0 4
+password class
+login
+logging synchro
+exec-timeout 15
+
+exit
+
+interface g0/0
+ip address 209.165.202.129 255.255.255.224
+no shut
+
+interface s0/0/1
+ip address 209.165.200.225 255.255.255.252
+no shut
+
+end
+
+wr
+
+!!!!!!!!!Static routing!!!!!!!!!!!!!!!!
+conf t
+ip route 192.168.1.0 255.255.255.0 s0/0/1
+ip route 10.10.2.0    ___________  s0/0/1

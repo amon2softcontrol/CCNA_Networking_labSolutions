@@ -1,0 +1,39 @@
+no ip cef	Disable ip cef to test connectivity
+Cisco Express Forwarding (CEF) is advanced, Layer 3 IP switching technology.
+CEF optimizes network performance and scalability for networks with large and dynamic traffic patterns,
+such as the Internet, on networks characterized by intensive Web-based applications, or interactive sessions.
+
+Every router has a virtual interface 
+Loopback interfaces are for testing purposes
+Routing protocol uses ip of loopback interfaces at the router ID (as the virtual interfaces never fails)
+
+For OSPF....
+
+
+
+Objectives
+
+Cable a network according to the Topology Diagram.
+Load provided scripts onto the routers.
+Examine the current status of the network.
+Configure RIPv2 on all routers.
+Examine the automatic summarization of routes.
+Examine routing updates with debug ip rip.
+Disable automatic summarization.
+Examine the routing tables.
+Verify network connectivity.
+Document the RIPv2 configuration.
+
+
+discontiguous network : 
+subnets are physically and logically divided by at least
+one other classful or major network
+
+
+not node balancing
+because of load-balancing, success only 50%  problem of the version 1
+auto summary (disable the auto-summary)
+
+router-rip
+no auto-summary
+

@@ -1,0 +1,54 @@
+en
+conf t
+no ip domain-lookup
+banner motd &
+**************************
+This is message of the day
+**************************
+&
+
+hostname HQ
+
+line console 0
+logging synchronous
+password class
+login
+exec-timeout 15
+
+line vty 0 4
+password class
+login
+logging synchronous
+exec-timeout 15
+password class
+
+exit
+
+enable password class
+
+interface g0/0
+ip address 192.168.1.129 255.255.255.192
+no shut
+
+interface s0/0/0
+ip address 192.168.1.65 255.255.255.192
+no shut
+
+interface s0/0/1
+ip address 209.165.200.226 255.255.255.252
+clock rate 64000
+no shut
+
+end
+
+wr
+!!!!!!!!!!!!!!!!!!!!!!!!
+conf t
+router rip
+network 192.168.1.128
+network 192.168.1.64
+passive-interface g0/0
+default-information originate
+exit
+
+ip route 0.0.0.0 0.0.0.0 s0/0/1  //setting default - static route 

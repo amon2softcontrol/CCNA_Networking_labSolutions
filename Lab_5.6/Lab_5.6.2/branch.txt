@@ -1,0 +1,47 @@
+en
+conf t
+no ip domain-lookup
+banner motd &
+**************************
+This is message of the day
+**************************
+&
+
+hostname branch
+
+line console 0
+logging synchro
+password class
+login
+exec-timeout 15
+
+line vty 0 4
+password class
+login
+logging synchro
+exec-timeout 15
+
+exit
+
+enable password class
+
+interface g0/0
+ip address 10.10.2.1 255.255.254.0
+no shut
+
+interface s0/0/0
+ip address 192.168.1.126 255.255.255.192
+clock rate 64000
+no shut
+
+end
+
+wr
+
+!!!!!!!!!!!!!!!!!!!!!!!!
+conf t
+router rip
+network 192.168.1.64
+network 10.10.2.0
+passive-interface g0/0
+exit

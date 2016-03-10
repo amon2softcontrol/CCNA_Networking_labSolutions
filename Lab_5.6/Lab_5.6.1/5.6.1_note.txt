@@ -1,0 +1,30 @@
+Configure the router hostname.
+	2. Disable DNS lookup. 
+		  no ip domain-lookup
+	3. Configure an EXEC mode password.   
+
+	4. Configure a message-of-the-day banner.
+		 [banner motd & .......................&]
+
+	5. Configure a password for console connections.  
+		line console 0 
+		password class [en --> conf t --> secure]
+		login
+
+	6. Configure a password for VTY connections.
+		line vty 0-4 enable secret class [en --> conf t --> secure]
+
+
+line console 0 logging synchronous
+
+erase startup-config 
+reload
+
+copy run start
+
+RIP
+	___show ip route___
+	___show ip protocols___
+	___debug ip rip___
+
+	passive-interface fastethernet 0/0  -- (Stop broadcasting to PC(save bandwidth, and security purposes))

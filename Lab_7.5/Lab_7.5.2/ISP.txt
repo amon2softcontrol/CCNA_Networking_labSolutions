@@ -1,0 +1,18 @@
+en
+conf t
+
+hostname ISP
+
+no ip domain-lookup
+
+interface g0/0
+ip add 209.165.200.225 255.255.255.224
+no shut
+interface s0/0/1
+ip add 209.165.202.129 255.255.255.224
+no shut
+
+exit
+
+
+ip route 192.168.40.0 255.255.255.0 s0/0/1

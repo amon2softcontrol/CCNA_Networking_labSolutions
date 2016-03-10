@@ -1,0 +1,18 @@
+	en 
+	conf t
+	erase startup-config
+	reload	
+
+1. Configure the router hostname.    		---> host name r1
+2. Disable DNS lookup. 		              ---> no ip domain-lookup
+3. Configure an EXEC mode password. 		 ---> enable secret cisco
+4. Configure a message-of-the-day banner.     ---> banner motd &......&
+5. Configure a password for console connections. ---> line console 0, password class,login,end, secure	
+6. Configure a password for VTY connections.  ---> line vty 0-4, enable secret class, login, end , secure;
+7. Synchronize unsolicited messages and debug output with solicited output and prompts for the ---> line console 0, logging synchronous
+console and virtual terminal lines.
+8. Configure an EXEC timeout of 15 minutes.   --->  line console 0, exec-timeout m s
+
+
+debug ip routing 
+undebug ip routing 

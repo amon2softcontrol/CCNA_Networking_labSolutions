@@ -1,0 +1,67 @@
+Static vs default
+static - exit interface  AD 0 (higher priority)
+static - next hop        AD 1 (lower priority)
+
+Load balancing
+this is the ability of a router to distribute packets among multiple same cost paths
+-1  bottleneck
+-2  speed up
+-3  security
+
+
+Administrative distance: numeric value specifying the preference of a particular route
+**Routing Protocol ID**  lower the AD, higher the priority
+EIGRP = 90
+	{{{
+	enhanced Distance Vector protocol, 
+		Eigrp has in its topology table only the routes learned by its neighbors
+			Being able to trigger updates instead of sending periodic updates.
+	   		 |   It uses the topology table to maintain all valid routes received from neighbors.
+			 | 	     It has the neighborship adjacencies by using the hello packets.
+			 |         	  It supports the manual route summarization so it would create hierarchically design in large networks.
+	}}               |
+;  			 |--> trigger updates 
+OSPF {
+		Open standard, 
+				large network
+}
+
+Distance vector routing (RIP(15 hops) vs IGRP(255 hops))
+
+FLSM VS VLSM
+ |       |-> classless RIP2 
+ |
+ |->classful RIP1 default subnet mask is assumed 
+
+RIP   = 120  Routing Interface protocol
+Use hop count as a metric, 15 is the maximum (16 is unreachable(infinity))
+
+NO reason to send updates to pc , save bandwidth and prevent sniffing
+
+RIP2 -- variable length subnet mask is also send as the information
+Routing loops probelm :
+		--Untill hop increased to 16 or 
+		--TTL of the packet expires 255 hops(8bits). 
+		--Split Horizon Rule , not allow update back even if timer reaches 30 seconds
+		--Split Horizon Rule with poison reverse, allows but with unreachable information
+
+In most networking environments, RIP is not the preferred choice for routing as its time to converge and scalability are poor compared to EIGRP, OSPF, or IS-IS.
+However, it is easy to configure, because RIP does not require any parameters unlike other protocols.
+
+
+
+normally when you want to go the destination , normally metric is used to check which
+route is the best route. 
+When get deeper, Routing protocol actually uses administrative prior to using metric
+	 
+	- Network Discovery (Timer by rip)
+	- Routing concergence :
+ 				when all routing tables in the network has same network information
+			Reacged by:
+				speed of broadcasting
+				speed of route calculation
+	- Periodic updates (RIPv1) 
+		Using Timers : update timer, invalid timer, holddown timer, flush timer
+						^
+						|
+						|-> (not a good route anymore)

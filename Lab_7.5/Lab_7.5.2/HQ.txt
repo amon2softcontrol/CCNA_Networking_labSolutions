@@ -1,0 +1,36 @@
+en
+conf t
+
+hostname HQ
+
+no ip domain-lookup
+
+interface g0/0
+ip add 192.168.40.1 255.255.255.192
+no shut
+interface g0/1
+ip add 192.168.40.65 255.255.255.192
+no shut
+interface s0/0/0
+ip add 192.168.40.177 255.255.255.252
+no shut
+interface s0/0/1
+ip add 209.165.202.158 255.255.255.224
+clock rate 64000
+no shut
+
+exit
+
+router rip
+version 2
+network 192.168.40.0
+network 192.168.40.64
+network 192.168.40.176
+passive-interface g0/0
+passive-interface g0/1
+default-information originate
+no auto-summar
+
+exit
+
+ip route 0.0.0.0 0.0.0.0 s0/0/1
